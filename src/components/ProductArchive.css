@@ -1,0 +1,22 @@
+.archive__container {
+    display: grid;
+    grid-template-columns: 300px auto;
+    gap: 2rem;
+}
+
+.archive__container .sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.archive__container .products__display {
+    padding: 2rem 0;
+}
+
+.archive__container .products__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
