@@ -78,12 +78,18 @@ export const ProductArchive = () => {
                 order = `order=asc`
         }
 
+        const url = import.meta.env.VITE_WORDPRESS_BASE_URL;
+        const username = import.meta.env.VITE_PRIVATE_USER_APP_USER
+        const password = import.meta.env.VITE_PRIVATE_USER_APP_KEY
+        const basicAuth = 'Basic ' + btoa(username + ':' + password);
+
         const config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: `https://app.freddo.com.mx/wp-json/wc/v3/products?per_page=12&${order}${(activeCategory != 0) ? `&category=${activeCategory}` : ''}${activePage != 1 ? `&page=${activePage}` : ''}${isOnSale ? `&on_sale=${isOnSale}` : ''}${filterPrice ? `&min_price=${filterPrice[0]}&max_price=${filterPrice[1]}` : ''}`,
+            url: `${url}/wp-json/wc/v3/products?per_page=12&${order}${(activeCategory != 0) ? `&category=${activeCategory}` : ''}${activePage != 1 ? `&page=${activePage}` : ''}${isOnSale ? `&on_sale=${isOnSale}` : ''}${filterPrice ? `&min_price=${filterPrice[0]}&max_price=${filterPrice[1]}` : ''}`,
             headers: {
-                'Authorization': 'Basic Z2Nvcm9uYWRvNTEwMDpNTkwyIFNTNWIgNmZQNyBJVGtHIER3M3kgTllrbw=='
+                'Authorization': basicAuth,
+                'Content-Type': 'application/json',
             }
         }
 
